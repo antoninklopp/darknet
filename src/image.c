@@ -179,10 +179,14 @@ void draw_box_bw(image a, int x1, int y1, int x2, int y2, float brightness)
 void draw_box_width_bw(image a, int x1, int y1, int x2, int y2, int w, float brightness)
 {
     int i;
+    FILE *f = fopen("output.txt", "a"); 
     for (i = 0; i < w; ++i) {
         float alternate_color = (w % 2) ? (brightness) : (1.0 - brightness);
         draw_box_bw(a, x1 + i, y1 + i, x2 - i, y2 - i, alternate_color);
+        printf("Bounding Box: Left=%d, Top=%d, Right=%d, Bottom=%d\n", x1, y1, x2, y2);
+        fprintf(f, "%d %d %d %d\n", x1, y1, x2, y2);
     }
+    fclose(f);
 }
 
 void draw_box(image a, int x1, int y1, int x2, int y2, float r, float g, float b)
@@ -224,6 +228,7 @@ void draw_box(image a, int x1, int y1, int x2, int y2, float r, float g, float b
 void draw_box_width(image a, int x1, int y1, int x2, int y2, int w, float r, float g, float b)
 {
     int i;
+    printf("HERE\n"); 
     for(i = 0; i < w; ++i){
         draw_box(a, x1+i, y1+i, x2-i, y2-i, r, g, b);
     }
@@ -237,9 +242,13 @@ void draw_bbox(image a, box bbox, int w, float r, float g, float b)
     int bot   = (bbox.y+bbox.h/2)*a.h;
 
     int i;
+    FILE *f = fopen("output.txt", "w"); 
     for(i = 0; i < w; ++i){
         draw_box(a, left+i, top+i, right-i, bot-i, r, g, b);
+        printf("Bounding Box: Left=%d, Top=%d, Right=%d, Bottom=%d\n", left, top, right, bot);
+        fprintf(f, "%d %d %d %d\n", left, right, top, bot);
     }
+    fclose(f);
 }
 
 image **load_alphabet()
