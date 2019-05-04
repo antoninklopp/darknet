@@ -37,3 +37,11 @@ Thumbs.db
 lib/
 include/
 share/
+
+bad.list
+bad_label.list
+darknet
+output_global.txt
+predictions.jpg
+result.txt
+
