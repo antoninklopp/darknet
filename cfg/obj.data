@@ -1,5 +1,5 @@
 classes= 2 
-train  = ../AIChallenge4Health/train.txt  
-valid  = ../AIChallenge4Health/test.txt  
+train  = ../train.txt  
+valid  = ../test.txt  
 names = cfg/obj.names  
 backup = backup/
